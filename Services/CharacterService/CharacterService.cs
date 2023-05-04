@@ -40,8 +40,8 @@ namespace dotnet_rpg.Services.CharacterService
             {
                 var character = await _context.Characters.FirstAsync(c => c.Id == id);
                 _context.Characters.Remove(character);
-
                 await _context.SaveChangesAsync();
+
                 response.Data = _context.Characters.Select( c => _mapper.Map<GetCharacters>(c)).ToList();
             }
             catch(Exception ex)
