@@ -12,10 +12,31 @@ namespace dotnet_rpg.Services.AuthService
         {
             _context = context;
         }
-        public Task<ServiceResponse<string>> Login(string username, string password)
+
+
+        public async Task<ServiceResponse<string>> Login(string username, string password)
         {
-            throw new NotImplementedException();
+            ServiceResponse<string> response = new ServiceResponse<string>();
+
+            var user = await _context.Users.FirstOrDefaultAsync(c => c.Username.ToLower().Equals(username.ToLower()));
+            if(user == null)
+            {
+                response.Success = false;
+                response.Message = "User not found";
+            }
+            else if (!VerifyPasswordHash(password, user.PasswordHash, user.PasswordSalt))
+            {
+                response.Success = false;
+                response.Message = "Incorrect password";
+            }
+            else
+            {
+                response.Data = user.Id.ToString();
+            }
+            return response;
+
         }
+
 
         public async Task<ServiceResponse<int>> Register(User user, string password)
         {
@@ -40,6 +61,7 @@ namespace dotnet_rpg.Services.AuthService
             return response;
         }
 
+
         public async Task<bool> UserExists(string username)
         {
             if(await _context.Users.AnyAsync(c => c.Username.ToLower() == username.ToLower()))
@@ -49,6 +71,7 @@ namespace dotnet_rpg.Services.AuthService
             return false;
         }
 
+
         private void CreatePasswordHash(string password, out byte[] passwordHash, out byte[] passwordSalt)
         {
             using (var hmac = new System.Security.Cryptography.HMACSHA512())
@@ -56,6 +79,16 @@ namespace dotnet_rpg.Services.AuthService
                 passwordSalt = hmac.Key;
                 passwordHash = hmac.ComputeHash(System.Text.Encoding.UTF8.GetBytes(password));
             }
+        }
+
+        private bool VerifyPasswordHash(string password, byte[] passwordHash, byte[] passwordSalt)
+        {
+            using (var hmac = new System.Security.Cryptography.HMACSHA512(passwordSalt))
+            {
+                var computeHash = hmac.ComputeHash(System.Text.Encoding.UTF8.GetBytes(password));
+                return computeHash.SequenceEqual(passwordHash);
+            }
+          
         }
     }
 }
