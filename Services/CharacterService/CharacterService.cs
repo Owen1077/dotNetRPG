@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using dotnet_rpg.Data;
-using dotnet_rpg.Dtos;
+using dotnet_rpg.Dtos.CharacterDto;
 using dotnet_rpg.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;

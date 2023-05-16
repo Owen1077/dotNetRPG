@@ -1,10 +1,9 @@
 ﻿using dotnet_rpg.Models;
 
-namespace dotnet_rpg.Dtos
+namespace dotnet_rpg.Dtos.CharacterDto
 {
-    public class UpdateCharacters
+    public class AddCharacters
     {
-        public int Id { get; set; }
         public string Name { get; set; } = "Frodo";
         public int HitPoints { get; set; } = 100;
         public int Strength { get; set; } = 10;

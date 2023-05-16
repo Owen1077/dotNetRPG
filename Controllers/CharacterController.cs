@@ -1,4 +1,4 @@
-﻿using dotnet_rpg.Dtos;
+﻿using dotnet_rpg.Dtos.CharacterDto;
 using dotnet_rpg.Models;
 using dotnet_rpg.Services.CharacterService;
 using Microsoft.AspNetCore.Mvc;

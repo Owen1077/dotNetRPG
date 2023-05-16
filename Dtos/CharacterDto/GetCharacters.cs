@@ -1,6 +1,6 @@
 ﻿using dotnet_rpg.Models;
 
-namespace dotnet_rpg.Dtos
+namespace dotnet_rpg.Dtos.CharacterDto
 {
     public class GetCharacters
     {
