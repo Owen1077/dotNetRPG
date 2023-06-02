@@ -66,3 +66,10 @@ C:\Users\Decagon\Desktop\My Decagon Experience\source\repos\dotnet-rpg\obj\Debug
 C:\Users\Decagon\Desktop\My Decagon Experience\source\repos\dotnet-rpg\obj\Debug\net6.0\dotnet-rpg.pdb
 C:\Users\Decagon\Desktop\My Decagon Experience\source\repos\dotnet-rpg\obj\Debug\net6.0\dotnet-rpg.genruntimeconfig.cache
 C:\Users\Decagon\Desktop\My Decagon Experience\source\repos\dotnet-rpg\obj\Debug\net6.0\ref\dotnet-rpg.dll
+C:\Users\Decagon\Desktop\My Decagon Experience\source\repos\dotnet-rpg\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\Decagon\Desktop\My Decagon Experience\source\repos\dotnet-rpg\bin\Debug\net6.0\Microsoft.DotNet.PlatformAbstractions.dll
+C:\Users\Decagon\Desktop\My Decagon Experience\source\repos\dotnet-rpg\bin\Debug\net6.0\Microsoft.Extensions.DependencyModel.dll
+C:\Users\Decagon\Desktop\My Decagon Experience\source\repos\dotnet-rpg\bin\Debug\net6.0\Newtonsoft.Json.dll
+C:\Users\Decagon\Desktop\My Decagon Experience\source\repos\dotnet-rpg\bin\Debug\net6.0\Scrutor.dll
+C:\Users\Decagon\Desktop\My Decagon Experience\source\repos\dotnet-rpg\bin\Debug\net6.0\Swashbuckle.AspNetCore.Annotations.dll
+C:\Users\Decagon\Desktop\My Decagon Experience\source\repos\dotnet-rpg\bin\Debug\net6.0\Swashbuckle.AspNetCore.Filters.dll

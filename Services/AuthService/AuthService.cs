@@ -38,6 +38,7 @@ namespace dotnet_rpg.Services.AuthService
             {
                 response.Data = CreateToken(user);
             }
+
             return response;
 
         }
