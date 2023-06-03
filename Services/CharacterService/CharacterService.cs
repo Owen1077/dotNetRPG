@@ -53,10 +53,12 @@ namespace dotnet_rpg.Services.CharacterService
         }
 
 
-        public async Task<ServiceResponse<List<GetCharacters>>> GetAllCharacters()
+        public async Task<ServiceResponse<List<GetCharacters>>> GetAllCharacters(int userId)
         {
             ServiceResponse<List<GetCharacters>> response = new ServiceResponse<List<GetCharacters>>();
-            var dbCharacters = await _context.Characters.ToListAsync();
+            var dbCharacters = await _context.Characters
+                .Where(c => c.User.Id == userId)
+                .ToListAsync();
             response.Data = dbCharacters.Select(c => _mapper.Map<GetCharacters>(c)).ToList();
 
             return response;
