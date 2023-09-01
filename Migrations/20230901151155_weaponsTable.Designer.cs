@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using dotnet_rpg.Data;
 
@@ -11,9 +12,10 @@ using dotnet_rpg.Data;
 namespace dotnet_rpg.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20230901151155_weaponsTable")]
+    partial class weaponsTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -104,8 +106,7 @@ namespace dotnet_rpg.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CharacterId")
-                        .IsUnique();
+                    b.HasIndex("CharacterId");
 
                     b.ToTable("Weapons");
                 });
@@ -122,18 +123,12 @@ namespace dotnet_rpg.Migrations
             modelBuilder.Entity("dotnet_rpg.Models.Weapon", b =>
                 {
                     b.HasOne("dotnet_rpg.Models.Character", "Character")
-                        .WithOne("Weapon")
-                        .HasForeignKey("dotnet_rpg.Models.Weapon", "CharacterId")
+                        .WithMany()
+                        .HasForeignKey("CharacterId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Character");
-                });
-
-            modelBuilder.Entity("dotnet_rpg.Models.Character", b =>
-                {
-                    b.Navigation("Weapon")
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("dotnet_rpg.Models.User", b =>

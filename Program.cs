@@ -17,6 +17,7 @@ builder.Services.AddDbContext<DataContext>(
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
+
 builder.Services.AddSwaggerGen(c =>
 {
     c.AddSecurityDefinition("oauth2", new OpenApiSecurityScheme
@@ -32,6 +33,7 @@ builder.Services.AddSwaggerGen(c =>
 
 builder.Services.AddScoped<ICharacterService, CharacterService>();
 builder.Services.AddScoped<IAuthService, AuthService>();
+
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
     {
@@ -42,11 +44,12 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             .GetBytes(builder.Configuration.GetSection("AppSet:Token").Value)),
             ValidateIssuer = false,
             ValidateAudience = false
-        };
-        
+        };        
     });
 
 builder.Services.AddAutoMapper(typeof(Program).Assembly);
+
+builder.Services.AddHttpContextAccessor();
 
 var app = builder.Build();
 
