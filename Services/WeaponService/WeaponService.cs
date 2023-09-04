@@ -3,6 +3,8 @@ using dotnet_rpg.Data;
 using dotnet_rpg.Dtos.CharacterDto;
 using dotnet_rpg.Dtos.WeaponsDto;
 using dotnet_rpg.Models;
+using Microsoft.EntityFrameworkCore;
+using System.Security.Claims;
 
 namespace dotnet_rpg.Services.WeaponService
 {
@@ -23,7 +25,25 @@ namespace dotnet_rpg.Services.WeaponService
             ServiceResponse<GetCharacters> response = new ServiceResponse<GetCharacters>();
             try
             {
+                Character character = await _context.Characters.FirstOrDefaultAsync(c => c.Id == newWeapon.CharacterId &&
+                c.User.Id == int.Parse(_httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier)));
 
+                if(character == null)
+                {
+                    response.Success = false;
+                    response.Message = "Character not found";
+                }
+
+                Weapon weapon = new Weapon 
+                {
+                    Name = newWeapon.Name,
+                    Damage = newWeapon.Damage,
+                    Character = character
+                };
+
+                _context.Weapons.Add(weapon);
+                _context.SaveChangesAsync();
+                response.Data = _mapper.Map<GetCharacters>(character);
             }
             catch(Exception ex)
             {
@@ -31,6 +51,7 @@ namespace dotnet_rpg.Services.WeaponService
                 response.Message = ex.Message;
             }
 
+            return response;
         }
     }
 }
