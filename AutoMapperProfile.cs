@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using dotnet_rpg.Dtos.CharacterDto;
+using dotnet_rpg.Dtos.SkillDto;
 using dotnet_rpg.Dtos.WeaponsDto;
 using dotnet_rpg.Models;
 
@@ -13,6 +14,8 @@ namespace dotnet_rpg
             CreateMap<AddCharacters, Character>();
             CreateMap<UpdateCharacters, Character>();
             CreateMap<Weapon, GetWeaponDto>();
+            CreateMap<Skill, GetSkillDto>();
+
         }
     }
 }
